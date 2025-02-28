@@ -18,4 +18,6 @@ public class SecurityConfig {
   		.authorizeHttpRequests(authz -> authz.requestMatchers("/**").permitAll()).build();
   		//.addFilterBefore(new AuthenticationFilter(),  UsernamePasswordAuthenticationFilter.class).build();
     }
+  
+  
 }

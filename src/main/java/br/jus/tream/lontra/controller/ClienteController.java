@@ -15,6 +15,7 @@ import br.jus.tream.lontra.domain.DTO.ParamsDTO;
 import br.jus.tream.lontra.response.ApiResponse;
 import br.jus.tream.lontra.services.ClienteService;
 import br.jus.tream.lontra.util.ResponseUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -23,11 +24,13 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
+	@Tag(name = "Clientes", description = "Metodo para listar todos os clientes")
 	@GetMapping
 	public ResponseEntity<List<Cliente>> findAll() {
 		return ResponseEntity.ok(clienteService.findAll());
 	}
 
+	@Tag(name = "Clientes response generic", description = "Metodo para listar todos os clientes usando Response Generic")
 	@GetMapping("/generic")
 	public ResponseEntity<ApiResponse<List<Cliente>>> usingResponseGeneric(HttpServletRequest request) {
 		var lst = clienteService.findAll();
