@@ -1,9 +1,6 @@
 package br.jus.tream.lontra.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,8 +15,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Cliente {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROX_ID")
+    @SequenceGenerator(name = "PROX_ID", sequenceName = "PROX_ID", allocationSize = 1)
+    private Long id;
 	private String nome;
     private Boolean ativo;
     private String passwd;

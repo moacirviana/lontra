@@ -5,14 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,14 +20,15 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Pedido {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROX_ID")
+	@SequenceGenerator(name = "PROX_ID", sequenceName = "PROX_ID", allocationSize = 1)
 	private Long id;
 	private LocalDate datacad;
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
     private Cliente cliente;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 	
 	public BigDecimal getValorTotal() {

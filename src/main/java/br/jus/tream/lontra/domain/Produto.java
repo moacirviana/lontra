@@ -2,11 +2,7 @@ package br.jus.tream.lontra.domain;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +18,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Produto {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROX_ID")
+	@SequenceGenerator(name = "PROXP_ID", sequenceName = "PROX_ID", allocationSize = 1)
 	private Long id;
 	private String descricao;
 	private BigDecimal preco;

@@ -1,7 +1,9 @@
 package br.jus.tream.lontra.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import br.jus.tream.lontra.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,10 +20,16 @@ public class ClienteService {
    @Autowired
    ClienteRepository clienteRepo;
 
+   public Cliente findById(Long id){
+       Optional<Cliente> obj = clienteRepo.findById(id);
+       return obj.orElseThrow(() -> new ObjectNotFoundException(
+               "Cliente não encontrado! id:" + id + ", Tipo:" + Cliente.class.getName()));
+   }
+
    public List<Cliente> findAll() {
 	  return clienteRepo.findAll();
    }
-	
+
    public List<Cliente> findByNomeLike(String nome){
 	   String param = String.format("%%%s%%", nome.trim().toUpperCase());
 	  return clienteRepo.findByNomeLike(param);
