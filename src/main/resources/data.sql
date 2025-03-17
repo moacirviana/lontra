@@ -11,12 +11,12 @@ INSERT INTO pedido(id, datacad, id_cliente) values(1, '2025-01-01', 1);
 INSERT INTO pedido(id, datacad, id_cliente) values(2, '2025-01-01', 2);
 INSERT INTO pedido(id, datacad, id_cliente) values(3, '2024-01-01', 1);
 
-INSERT INTO item_pedido(id, preco_unitario, quantidade, pedido_id, produto_id) values (1, 10.5,  1, 1, 1);
-INSERT INTO item_pedido(id, preco_unitario, quantidade, pedido_id, produto_id) values (2, 11.51, 2, 1, 2);
-INSERT INTO item_pedido(id, preco_unitario, quantidade, pedido_id, produto_id) values (3, 12.52, 1, 1, 3);
+INSERT INTO item_pedido(preco_unitario, quantidade, pedido_id, produto_id) values (10.5,  1, 1, 1);
+INSERT INTO item_pedido(preco_unitario, quantidade, pedido_id, produto_id) values (11.51, 2, 1, 2);
+INSERT INTO item_pedido(preco_unitario, quantidade, pedido_id, produto_id) values (12.52, 1, 1, 3);
 
-INSERT INTO item_pedido(id, preco_unitario, quantidade, pedido_id, produto_id) values (4, 12.52, 1, 2, 3);
-INSERT INTO item_pedido(id, preco_unitario, quantidade, pedido_id, produto_id) values (5, 14.54, 2, 2, 4);
+INSERT INTO item_pedido(preco_unitario, quantidade, pedido_id, produto_id) values (12.52, 1, 2, 3);
+INSERT INTO item_pedido(preco_unitario, quantidade, pedido_id, produto_id) values (14.54, 2, 2, 4);
 
 
 INSERT INTO produto (id, descricao, preco, ativo) VALUES (5, 'Apontado de lápis', 10.5, 1);
