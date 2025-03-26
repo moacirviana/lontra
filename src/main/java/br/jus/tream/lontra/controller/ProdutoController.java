@@ -1,7 +1,9 @@
 package br.jus.tream.lontra.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +24,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/produtos")
+@RequiredArgsConstructor
 public class ProdutoController {
-	@Autowired
-	ProdutoService produtoService;
+	private final ProdutoService produtoService;
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAll() {
@@ -51,7 +53,15 @@ public class ProdutoController {
         var produtos = this.produtoService.findAll(paginacao);
           return ResponseEntity.ok(produtos);
     }
-		
+
+	@GetMapping("/lk/{desc}/preco/{preco}")
+	public ResponseEntity<List<Produto>> findAllByNameLikeAndPriceLessThanEqual(@PathVariable String desc, @PathVariable BigDecimal preco)  {
+		var produtos = this.produtoService.findAllByDescricaoLikeAndPrecoLessThanEqual(desc, preco);
+		return ResponseEntity.ok(produtos);
+	}
+
+
+
 	/*
 	@GetMapping("/pages")
 	public ResponseEntity<ApiResponse<List<Produto>>> findAllPage(HttpServletRequest request) {

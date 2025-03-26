@@ -21,7 +21,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-    private Boolean ativo;
+    private Integer ativo;
     private String passwd;
     private String endereco;
     private String cep;

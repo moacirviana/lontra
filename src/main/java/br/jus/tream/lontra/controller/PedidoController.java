@@ -2,6 +2,7 @@ package br.jus.tream.lontra.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/pedidos")
+@RequiredArgsConstructor
 public class PedidoController {
-	@Autowired
-	PedidoService pedidoService;
+	private final PedidoService pedidoService;
 	
 	@GetMapping()
 	public ResponseEntity<ApiResponse<List<Pedido>>> usingResponseGeneric(HttpServletRequest request) {

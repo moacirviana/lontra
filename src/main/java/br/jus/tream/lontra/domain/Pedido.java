@@ -3,7 +3,9 @@ package br.jus.tream.lontra.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,13 +31,15 @@ public class Pedido {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private LocalDate datacad;
+
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
     private Cliente cliente;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private List<ItemPedido> itens = new ArrayList<>();
+	@OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 	
 	public BigDecimal getValorTotal() {
 		BigDecimal soma = BigDecimal.valueOf(0.0);;

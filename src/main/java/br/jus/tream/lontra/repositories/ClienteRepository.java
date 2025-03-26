@@ -12,7 +12,9 @@ import br.jus.tream.lontra.domain.DTO.ParamsDTO;
 
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>, JpaSpecificationExecutor<Cliente> {
-	
+
+	List<Cliente> findAllByAtivoEquals(Integer ativo);
+
 	List<Cliente> findByNomeLike(String nome);
 	
 	@Query("SELECT c FROM Cliente c WHERE c.nome LIKE %:#{#params.nome}% OR c.celular LIKE %:#{#params.celular}%")

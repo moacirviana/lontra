@@ -2,6 +2,7 @@ package br.jus.tream.lontra.services;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -14,9 +15,9 @@ import br.jus.tream.lontra.repositories.ClienteRepository;
 import br.jus.tream.lontra.repositories.ClienteSpecification;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
-   @Autowired
-   ClienteRepository clienteRepo;
+   private final ClienteRepository clienteRepo;
 
    public List<Cliente> findAll() {
 	  return clienteRepo.findAll();
@@ -35,5 +36,9 @@ public class ClienteService {
 		Specification<Cliente> spec = ClienteSpecification.filterByParams(params);
 		return clienteRepo.findAll(spec, Sort.by("nome"));
 	}
-	
+
+    public List<Cliente> findAllByAtivoEquals(Integer ativo) {
+        return clienteRepo.findAllByAtivoEquals(ativo);
+    }
+
 }

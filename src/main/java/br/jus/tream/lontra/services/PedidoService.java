@@ -2,6 +2,7 @@ package br.jus.tream.lontra.services;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,9 @@ import br.jus.tream.lontra.domain.Pedido;
 import br.jus.tream.lontra.repositories.PedidoRepository;
 
 @Service
+@RequiredArgsConstructor
 public class PedidoService {
-	@Autowired
-	PedidoRepository pedidoRepo;
+	private final PedidoRepository pedidoRepo;
 	
 	public List<Pedido> findAll() {
 		return pedidoRepo.findAll();
