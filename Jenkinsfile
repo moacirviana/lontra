@@ -9,15 +9,5 @@ pipeline {
                 }
             }
         }
-        stage('test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'docker compose up -d'
-            }
-        }
     }
 }
