@@ -6,7 +6,7 @@ RUN mvn package -DskipTests
 
 FROM eclipse-temurin:21-alpine
 WORKDIR /app
-COPY --from=build target/*.jar app.jar
+COPY --from=build target/lontraApp.jar app.jar
 EXPOSE 8080
 #CMD ["java","-jar","app.jar"]
 ENTRYPOINT ["java","-jar","app.jar"]
