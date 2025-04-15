@@ -1,12 +1,19 @@
 pipeline {
     agent any
-
     stages {
         stage('build') {
             steps {
-                script {
-                    sh 'docker compose up -d'
+                echo 'building the application'
+            }
+        }
+        stage('deploy') {
+            when {
+                expression{
+                    BRANCH_NAME=='main'
                 }
+            }    
+            steps {
+                echo 'deploying the application'
             }
         }
     }
