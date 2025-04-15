@@ -9,11 +9,11 @@ pipeline {
         stage('deploy') {
             when {
                 expression{
-                    BRANCH_NAME=='dev-moacir'
+                    BRANCH_NAME=='dev-moacir' || BRANCH_NAME=='main'
                 }
             }    
             steps {
-                echo 'deploying the application'
+                echo 'deploying the application for the branches main and dev-moacir'
             }
         }
     }
