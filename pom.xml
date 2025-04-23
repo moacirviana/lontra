@@ -11,7 +11,7 @@
 	<groupId>br.jus.tream</groupId>
 	<artifactId>lontra</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>lontra</name>
 	<description>Projeto aula com spring boot</description>
 	
