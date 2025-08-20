@@ -13,8 +13,8 @@ import br.jus.tream.lontra.repositories.PedidoRepository;
 @RequiredArgsConstructor
 public class PedidoService {
 	private final PedidoRepository pedidoRepo;
-
-	@Transactional(readOnly = true) // For read-heavy operations
+   // For read-heavy operations
+	// @Transactional(readOnly = true) 
 	public List<Pedido> findAll() {
 		return pedidoRepo.findAll();
 	}
