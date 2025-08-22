@@ -3,13 +3,13 @@ package br.jus.tream.lontra.services;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import br.jus.tream.lontra.domain.Cliente;
+import br.jus.tream.lontra.domain.DTO.ClienteDTO;
 import br.jus.tream.lontra.domain.DTO.ParamsDTO;
 import br.jus.tream.lontra.repositories.ClienteRepository;
 import br.jus.tream.lontra.repositories.ClienteSpecification;
@@ -41,4 +41,33 @@ public class ClienteService {
         return clienteRepo.findAllByAtivoEquals(ativo);
     }
 
+    public ClienteDTO save(ClienteDTO clienteDTO) {
+        Cliente cliente = clienteDTO.toEntity();
+        cliente = clienteRepo.save(cliente);
+        return ClienteDTO.fromEntity(cliente);
+    }
+
+    public List<ClienteDTO> getAllClientes() {
+        return clienteRepo.findAll()
+            .stream()
+            .map(ClienteDTO::fromEntity)
+            .toList();
+    }
+    
+    public ClienteDTO update(Long id, ClienteDTO clienteDTO) {
+        Cliente cliente = clienteRepo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        cliente.setAtivo(clienteDTO.ativo());
+        cliente.setNome(clienteDTO.nome());
+        cliente.setEndereco(clienteDTO.endereco());
+        cliente.setPasswd(clienteDTO.passwd());
+        cliente.setCep(clienteDTO.cep());
+        cliente.setCelular(clienteDTO.celular());
+        Cliente updated = clienteRepo.save(cliente);
+        return ClienteDTO.fromEntity(updated);
+    }
+    
+    public void delete(Long id) {
+        clienteRepo.deleteById(id);
+    }
 }
